@@ -18,8 +18,11 @@
   "bugs": {
     "url": "https://github.com/Markalope/simple-database/issues"
   },
+  "homepage": "https://github.com/Markalope/simple-database#readme",
+  "dependencies": {
+    "shortid": "^2.2.8"
+  },
   "devDependencies": {
     "mocha": "^5.2.0"
-  },
-  "homepage": "https://github.com/Markalope/simple-database#readme"
+  }
 }
