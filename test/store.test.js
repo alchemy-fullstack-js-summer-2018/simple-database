@@ -4,14 +4,21 @@ const path = require('path');
 
 describe.only('this is my store function', () => {
 
-    const source = path.join(__dirname, 'save-file-dir\\');
+    const source = path.join(__dirname, 'save-file-dir/');
 
-    it('saves shit', () => {
-        // console.log(source);
+    it('saves obj', () => {
         const item = new Store(source);
-        item.save({name: 'Bobby'})
-            .then(saved => {
-                assert.ok(JSON.parse(saved)._id)
+        item.save({name: 'james'})
+            .then(obj => {
+                console.log(obj._id)
+                return item.get(obj._id);
+            })
+            .then(animal => {
+                assert.equal(animal.name, 'james');
             });
     });
+
+    // it('removes files', () => {
+        
+    // })
 });
