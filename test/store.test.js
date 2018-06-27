@@ -20,11 +20,9 @@ describe('store', () => {
     it('save', () => {
 
         return store.save({ name: 'garfield' })
-            .then(animal => {
-                store.get(animal._id);
-            })
-            .then(animal =>{
-                assert.ok('got animal', animal._id)
-            })
+            .then(animal => { 
+                assert.ok(animal._id);
+                assert.deepEqual(animal, 'garfield');
+            });
     });
 });
