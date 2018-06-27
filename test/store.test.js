@@ -8,5 +8,19 @@ describe('store', () => {
         newStore = new Store();
     });
 
+    const pets = [
+        {
+            name: 'Benjamin Frankilin',
+            type: 'cat'
+        },
+        {
+            name: 'Birdtrude Stein',
+            type: 'bird'
+        }, 
+        {
+            name: 'Milo',
+            type: 'cat'
+        }
+    ];
  
 });
