@@ -31,4 +31,13 @@ describe('save file', () => {
                 assert.equal(obj.name, 'garfield');
             });
     });
+    it('returns null for an id that does not exist', () => {
+        return store.get('bad')
+            .catch(err => {
+                if(err.code !== 'ENOENT') throw err;
+            })
+            .then((obj) => {
+                assert.equal(obj, null);
+            });
+    });
 });
