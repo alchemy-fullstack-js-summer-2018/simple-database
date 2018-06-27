@@ -33,20 +33,20 @@ describe('save file', () => {
     });
     it('returns null for an id that does not exist', () => {
         return store.get('bad')
-            .catch(err => {
-                if(err.code !== 'ENOENT') throw err;
-            })
             .then(obj => {
                 assert.equal(obj, null);
             });
     });
     it('deletes files with a given id', () => {
         return store.remove('HJcTIU-fm')
-            .catch(err => {
-                if(err.code !== 'ENOENT') throw err;
-            })
             .then(obj => {
                 assert.deepEqual(obj.removed, true);
+            });
+    });
+    it('it returns false if attempting to remove an id that does not exist', () => {
+        return store.remove('bad')
+            .then(obj => {
+                assert.deepEqual(obj.removed, false);
             });
     });
 });
