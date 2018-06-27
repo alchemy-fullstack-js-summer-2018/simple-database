@@ -1,6 +1,6 @@
 const assert = require('assert');
 const path = require('path');
-const Store = require('../lib/Store');
+const Store = require('../lib/store');
 const { rimraf, mkdirp } = require('../lib/fs');
 
 
