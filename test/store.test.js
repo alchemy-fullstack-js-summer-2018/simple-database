@@ -18,15 +18,9 @@ describe('Store some animal data', () => {
         return mkdirp(dest);
     });
     
-    it('Saves a file to animals directory with an id', () => {
-        return store.saveFile({ name: 'Frank' })
-            .then(animal => {
-                assert.ok(JSON.parse(animal)._id);
-            });
-    });
 
-    it('Gets a file based on the id', () => {
-        store.saveFile({ name: 'Doggo' })
+    it('Saves a file with an id and checks the id', () => {
+        return store.saveFile({ name: 'Doggo' })
             .then(animal => {
                 return store.getFile(JSON.parse(animal)._id);
             })
