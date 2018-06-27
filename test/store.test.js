@@ -38,6 +38,7 @@ describe('store', () => {
         return store.save({ name: 'garfield' })
             .then(animal => {
                 assert.equal(animal.name, 'garfield');
+                
             });
     });
 });
