@@ -42,8 +42,9 @@ describe('Store some animal data', () => {
             .then(animal => {
                 return store.delete(animal._id);
             })
-            .then(response => {
-                assert.equal(response.removed, true);
+            .then(animal => {
+                assert.equal(animal.removed, true);
+                return store.getFile(animal._id);
             })
             .then(animal => {
                 assert.equal(animal, null);
