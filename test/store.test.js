@@ -23,13 +23,17 @@ describe('store', () => {
             })
             .then(obj => {
                 assert.equal(obj.god, 'Zeus');
-            })
-            .catch(err => {
-                if(err.code === 'ENOENT') {
-                    return null;
-                }
+            });
+            
+    });
+
+    it('returns null', () => {
+        return myStore.get('VeryBadWizard')
+            .then(id => {
+                assert.equal(id, null);
             });
     });
+        
 
 
 });
