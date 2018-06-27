@@ -57,4 +57,9 @@ describe('Simple database', () => {
                 assert.equal(response.removed, false);
             });
     });
+
+    it('gets all the candy bars', () => {
+        store = new Store(dest);
+        
+    });
 });
