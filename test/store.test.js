@@ -32,13 +32,12 @@ describe('store', () => {
             });
     });
 
-    it('test bad id', () => {
+    it('returns null when given a bad id', () => {
         const store = new Store(dir);
 
-        return store.save({ name: 'garfield' })
-            .then(animal => {
-                assert.equal(animal.name, 'garfield');
-                
+        return store.get('bad')
+            .then(result => {
+                assert.equal(result, null);
             });
     });
 });
