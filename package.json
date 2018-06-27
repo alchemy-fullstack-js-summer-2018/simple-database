@@ -1,0 +1,36 @@
+{
+  "name": "simple-database",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "lint": "eslint",
+    "pretest": "npm run lint",
+    "test": "npm run test:mocha",
+    "test:mocha": "mocha",
+    "start": "npm run test:mocha -- -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carriecarter/simple-database.git"
+  },
+  "author": "Carrie Carter",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carriecarter/simple-database/issues"
+  },
+  "homepage": "https://github.com/carriecarter/simple-database#readme",
+  "dependencies": {
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.6.2",
+    "shortid": "^2.2.8"
+  },
+  "devDependencies": {
+    "eslint": "^5.0.1",
+    "mocha": "^5.2.0"
+  }
+}
