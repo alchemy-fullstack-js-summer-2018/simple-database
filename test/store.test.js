@@ -4,7 +4,7 @@ const path = require('path');
 
 describe.only('this is my store function', () => {
 
-    const source = path.join(__dirname, 'save-file-dir');
+    const source = path.join(__dirname, 'save-file-dir\\');
 
     it('saves shit', () => {
         // console.log(source);
