@@ -8,15 +8,15 @@ describe.only('this is my store function', () => {
     const source = path.join(__dirname, 'save-file-dir/');
     const item = new Store(source);
 
-    beforeEach(() => {
-        return rimraf(source)
-            .catch(err => {
-                if(err !== 'ENOENT') throw err;
-            })
-            .then(() => {
-                return mkdirp(source);
-            });
-    });
+    // beforeEach(() => {
+    //     return rimraf(source)
+    //         .catch(err => {
+    //             if(err !== 'ENOENT') throw err;
+    //         })
+    //         .then(() => {
+    //             return mkdirp(source);
+    //         });
+    // });
 
     it('saves obj and gets obj successfully', () => {
         item.save({name: 'DOGS'})
@@ -58,7 +58,7 @@ describe.only('this is my store function', () => {
     it.only('returns the correct array', () => {
         return item.getAll()
             .then(items => {
-                assert.deepEqual(items, [ 'HyeNIw-G7.json'])
+                assert.deepEqual(items, [ 'SJfU_DbGX.json'])
             });
         });
 });
