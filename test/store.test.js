@@ -8,7 +8,7 @@ const Store = require('../lib/store');
 
 describe('Store some animal data', () => {
     const dest = path.join(__dirname, 'animals');
-    const store = new Store(dest);
+    let store = new Store(dest);
     
     beforeEach(() => {
         return rimraf(dest);
@@ -40,10 +40,10 @@ describe('Store some animal data', () => {
     it('Deletes a file by id', () => {
         return store.saveFile({ name: 'Frank' })
             .then(animal => {
-                return store.delete(animal._id);
+                return store.deleteFile(JSON.parse(animal)._id);
             })
             .then(animal => {
-                assert.equal(animal.removed, true);
+                assert.equal(animal.deleted, true);
                 return store.getFile(animal._id);
             })
             .then(animal => {
