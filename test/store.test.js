@@ -1,4 +1,5 @@
 const assert = require('assert');
+const { rimraf, mkdirp } = require('../lib/fs');
 const Store = require('../lib/store');
 const path = require('path');
 
@@ -7,10 +8,19 @@ describe.only('this is my store function', () => {
     const source = path.join(__dirname, 'save-file-dir/');
     const item = new Store(source);
 
+    // beforeEach(() => {
+    //     return rimraf(source)
+    //         .catch(err => {
+    //             if(err !== 'ENOENT') throw err;
+    //         })
+    //         .then(() => {
+    //             return mkdirp(source);
+    //         });
+    // });
+
     it('saves obj and gets obj successfully', () => {
         item.save({name: 'DOGS'})
             .then(obj => {
-                console.log(obj._id)
                 return item.get(obj._id);
             })
             .then(animal => {
@@ -23,5 +33,32 @@ describe.only('this is my store function', () => {
             .then(obj => {
                 assert.equal(obj, null);
             });      
-    })
+    });
+
+    it('removes items at the specified id and returns true', () => {
+        item.remove('Bki8q8Wzm')
+            .then(status => {
+                assert.deepEqual(status, { removed: true })
+            });
+    });
+
+    it('returns false when trying to remove on a bad id', () => {
+        item.remove('bad')
+            .then(status => {
+                assert.deepEqual(status, { removed: false })
+            });
+    });
+
+    it('returns an array the length of items', () => {
+        return item.getAll()
+            .then(items => {
+                assert.deepEqual(items.length, 2)
+            });
+        });
+    it.only('returns the correct array', () => {
+        return item.getAll()
+            .then(items => {
+                assert.deepEqual(items, [ 'HkA5A8-M7.json', 'Hy0P08WMm.json' ])
+            });
+        });
 });
