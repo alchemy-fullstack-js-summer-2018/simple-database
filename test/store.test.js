@@ -26,12 +26,11 @@ describe('Store some animal data', () => {
             })
             .then(animal => {
                 assert.equal(animal.name, 'Doggo');
-            })
-            .catch(err => console.log(err));
+            });
     });
 
     it('Returns null if no file id is found', () => {
-        return store.getFile('FAKEID')
+        return store.getFile('FAKE ID')
             .then(animal => {
                 assert.equal(animal, null);
             });
