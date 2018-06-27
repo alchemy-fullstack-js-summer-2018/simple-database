@@ -1,12 +1,13 @@
 const assert = require('assert');
 const { unlink, readFile } = require('../lib/fs');
 const path = require('path');
-const saveFile = require('../lib/save-file');
+const Store = require('../lib/store');
+const rootDirectory = path.join(__dirname, 'animals');
+const store = new Store(rootDirectory);
 
 describe('save file', () => {
-    const testDir = path.join(__dirname, 'save-file-dir');
     const destFileName = 'test.txt';
-    const dest = path.join(testDir, destFileName);
+    const dest = path.join(rootDirectory, destFileName);
 
     beforeEach(() => {
         return unlink(dest)
@@ -16,7 +17,7 @@ describe('save file', () => {
     });
 
     it('creates a new file in the destination', () => {
-        return saveFile(dest, 'testing testing')
+        return store.save(dest, 'testing testing')
             .then(() => {
                 return Promise.all([
                     readFile(dest, 'utf8')
