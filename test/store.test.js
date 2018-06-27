@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { rimraf, mkdirp, unlink } = require('../lib/fs');
+const { rimraf, mkdirp } = require('../lib/fs');
 const path = require('path');
 const Store = require('../lib/store');
 const rootDirectory = path.join(__dirname, 'animals/');
@@ -36,14 +36,17 @@ describe('save file', () => {
             .catch(err => {
                 if(err.code !== 'ENOENT') throw err;
             })
-            .then((obj) => {
+            .then(obj => {
                 assert.equal(obj, null);
             });
     });
     it('deletes files with a given id', () => {
-        return store.remove()
+        return store.remove('HJcTIU-fm')
+            .catch(err => {
+                if(err.code !== 'ENOENT') throw err;
+            })
             .then(obj => {
-                unlink(obj);
+                assert.deepEqual(obj.removed, true);
             });
     });
 });
