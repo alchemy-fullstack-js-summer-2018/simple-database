@@ -28,6 +28,10 @@ describe('store', () => {
         return store.save({ name: 'garfield' })
             .then(animal => {
                 assert.ok(animal._id);
+                return store.get(animal._id);
+            })
+            .then(animal => {
+                assert.equal(animal.name, 'garfield');
             });
     });
 });
