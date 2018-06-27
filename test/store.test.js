@@ -37,4 +37,17 @@ describe('Store some animal data', () => {
             });
     });
 
+    it('Deletes a file by id', () => {
+        return store.saveFile({ name: 'Frank' })
+            .then(animal => {
+                return store.delete(animal._id);
+            })
+            .then(response => {
+                assert.equal(response.removed, true);
+            })
+            .then(animal => {
+                assert.equal(animal, null);
+            });
+    });
+
 });
