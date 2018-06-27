@@ -34,6 +34,15 @@ describe('store', () => {
             });
     });
         
-
+    it('removes file with specified id', () => {
+        return myStore.save({ god: 'Zeus' })
+            .then(obj => {
+                return myStore.remove(obj._id);
+            })
+            .then(status => {
+                assert.equal(status.removed, true);       
+            });   
+    });
+    
 
 });
