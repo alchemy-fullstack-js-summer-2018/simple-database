@@ -22,7 +22,6 @@ describe('Simple database', () => {
         return store.save({ name: 'twix' })
 
             .then(saved => {
-                //assert.ok(saved._id);
                 return store.get(saved._id);
             })
 
@@ -31,10 +30,31 @@ describe('Simple database', () => {
             });
     });
 
-    it('gets a bad id and returns null', () => {
-        return store.get('bad id')
+    it('get method returns null', () => {
+        return store.get('badId')
             .then(returned => {
                 assert.equal(returned, null);
+            });
+    });
+
+    it('removes file from database', () => {
+        return store.save({ name: 'snickers' })
+            .then(saved => {
+                return store.remove(saved._id);
+            })
+            .then(response => {
+                assert.equal(response.removed, true);
+                return store.get(response.id);
+            })
+            .then(returned => {
+                assert.equal(returned, null);
+            });
+    });
+
+    it('remove method returns null', () => {
+        return store.remove('badId')
+            .then(response => {
+                assert.equal(response.removed, false);
             });
     });
 });
