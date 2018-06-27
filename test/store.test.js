@@ -25,9 +25,9 @@ describe('save file', () => {
     it('creates a new file in the destination', () => {
         return store.save({ name: 'garfield' })
             .then(saved => {
-                return saved.get(saved.id);
+                return store.get(saved._id);
             })
-            .then((obj) => {
+            .then(obj => {
                 assert.equal(obj.name, 'garfield');
             });
     });
