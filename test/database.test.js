@@ -1,2 +1,1 @@
-const variableName = require('
-variableName');
+const variableName = require('variableName');
