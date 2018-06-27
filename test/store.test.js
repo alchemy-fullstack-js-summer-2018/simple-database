@@ -58,7 +58,7 @@ describe.only('this is my store function', () => {
     it.only('returns the correct array', () => {
         return item.getAll()
             .then(items => {
-                assert.deepEqual(items, [ 'HkA5A8-M7.json', 'Hy0P08WMm.json' ])
+                assert.deepEqual(items, [ 'HyeNIw-G7.json'])
             });
         });
 });
