@@ -1,30 +1,31 @@
 const assert = require('assert');
-const { unlink, readFile } = require('../lib/fs');
+const { rimraf, mkdirp } = require('../lib/fs');
 const path = require('path');
 const Store = require('../lib/store');
-const rootDirectory = path.join(__dirname, 'animals');
+const rootDirectory = path.join(__dirname, 'animals/');
 const store = new Store(rootDirectory);
 
 describe('save file', () => {
-    const destFileName = 'test.txt';
-    const dest = path.join(rootDirectory, destFileName);
+    // readdir(rootDirectory)
+    //     .then((obj) => {
+    //         console.log(obj);
+    //     });
+    // const dir = path.join(rootDirectory, destFileName);
 
     beforeEach(() => {
-        return unlink(dest)
+        return rimraf(rootDirectory)
             .catch(err => {
                 if(err.code !== 'ENOENT') throw err;
+            })
+            .then(() => {
+                return mkdirp(rootDirectory);
             });
     });
 
     it('creates a new file in the destination', () => {
-        return store.save(dest, 'testing testing')
-            .then(() => {
-                return Promise.all([
-                    readFile(dest, 'utf8')
-                ]);
-            })
-            .then(([content]) => {
-                assert.deepEqual(content, 'testing testing');
+        return store.save({ name: 'garfield' })
+            .then(saved => {
+                assert.ok(saved._id);
             });
     });
 });
