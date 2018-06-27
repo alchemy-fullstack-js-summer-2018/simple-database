@@ -1,14 +1,27 @@
 const assert = require('assert');
-const { travisTest } = require('../lib/store');
+const path = require('path');
+const Store = require('../lib/Store');
+const { rimraf, mkdirp } = require('../lib/fs');
 
-describe('store project', () =>
 
-    describe('travisTest', () => {
-        it('should pass a test to get travis going', () => {
-            const numbers = [1, 2, 3, 4];
-            const result = travisTest(numbers, (n) => n * n);
-            assert.deepEqual(result, [1, 4, 9, 16]);
-        });
-    })
+describe('Store Database Project', () => {
 
-);
+    const dest = path.join(__dirname, 'database');
+    let store = new Store(dest);
+
+    beforeEach(() => {
+        return rimraf(dest);
+    });
+
+    beforeEach(() => {
+        return mkdirp(dest);
+    });
+
+    it('saves a file to the Database with an id', () => {
+        return store.save({ file: 'file data contents' })
+            .then(saved => {
+                assert.equal(saved.file, 'file data contents');
+            });
+    });
+   
+});
