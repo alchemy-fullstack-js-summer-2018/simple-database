@@ -49,4 +49,10 @@ describe('save file', () => {
                 assert.deepEqual(obj.removed, false);
             });
     });
+    it('returns an array of all objects in the directory', () => {
+        return store.getAll()
+            .then(arr => {
+                assert.deepEqual(arr.length, 3);
+            });
+    });
 });
