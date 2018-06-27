@@ -38,6 +38,12 @@ describe('Store Database Project', () => {
             });
     });
 
+    it('looks for file and returns null if it does not exist', () => {
+        return store.get('fake-file')
+            .then(verify => {
+                assert.equal(verify, null);
+            });
+    });
 
    
 });
