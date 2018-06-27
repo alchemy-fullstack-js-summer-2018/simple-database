@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { rimraf, mkdirp } = require('fs');
+const { rimraf, mkdirp } = require('../lib/fs.js');
 const path = require('path');
 
 const Store = require('../lib/store.js');
