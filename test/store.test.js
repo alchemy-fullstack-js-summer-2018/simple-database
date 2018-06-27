@@ -11,13 +11,12 @@ describe('save file', () => {
     const saveDir = path.join(__dirname, 'animals');
     
 
-    // beforeEach(() => {
-    //     //rimraf
-    //     return unlink(dest)
-    //         .catch(err => {
-    //             if(err.code !== 'ENOENT') throw err;
-    //         });
-    // });
+    beforeEach(() => {
+        return rimraf(directory)
+            .catch(err => {
+                if(err.code !== 'ENOENT') throw err;
+            });
+    });
 
     it('saves file to database directory', () => { 
         const store = new Store(saveDir);
