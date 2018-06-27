@@ -28,6 +28,10 @@ describe('save file', () => {
             });
         
     });
-
-    
+    it('checks for bad id or no id', () => {
+        return store.get('bad')
+            .then(result => {
+                assert.equal(result, null);
+            });
+    });
 });
