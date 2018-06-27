@@ -1,9 +1,9 @@
 const assert = require('assert');
 const path = require('path');
 const Store = require('../lib/store');
-// const { promisify } = require('util');
-// const rimraf = promisify(require('rimraf'));
-// const mkdirp = promisify(require('mkdirp'));
+const { promisify } = require('util');
+const rimraf = promisify(require('rimraf'));
+const mkdirp = promisify(require('mkdirp'));
 
 
 describe('save file', () => {
@@ -12,10 +12,11 @@ describe('save file', () => {
     
 
     beforeEach(() => {
-        return rimraf(directory)
-            .catch(err => {
-                if(err.code !== 'ENOENT') throw err;
-            });
+        return rimraf(saveDir);
+    });
+
+    beforeEach(() => {
+        return mkdirp(saveDir);
     });
 
     it('saves file to database directory', () => { 
