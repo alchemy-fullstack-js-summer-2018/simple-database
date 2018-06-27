@@ -31,7 +31,7 @@ describe('Store Database Project', () => {
 
 
     it('gets a file based on its id', () =>  {
-        return store.save({ file: 'file data contents' })
+        return store.save({ file: 'file contents' })
         //use our .get() to verify the file id:
             .then(verify => {
                 return store.get(verify._id);
@@ -45,5 +45,12 @@ describe('Store Database Project', () => {
             });
     });
 
+    it('deletes a file by id and returns true if deleted and false if does not exist', () => {
+        return store.save({ file: 'to be deleted' })
+            .then(saved => {
+                return store.remove(saved._id);
+            });
+
+    });
    
 });
