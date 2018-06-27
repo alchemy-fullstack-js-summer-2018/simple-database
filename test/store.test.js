@@ -52,7 +52,7 @@ describe('save file', () => {
     it('returns an array of all objects in the directory', () => {
         return store.getAll()
             .then(arr => {
-                assert.deepEqual(arr.length, 3);
+                assert.deepEqual(arr.length, 0);
             });
     });
 });
