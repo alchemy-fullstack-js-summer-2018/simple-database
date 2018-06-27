@@ -1,6 +1,7 @@
 const assert = require('assert');
-const { unlink, saveFile } = require('../lib/fs');
+const { unlink, readFile } = require('../lib/fs');
 const path = require('path');
+const saveFile = require('../lib/save-file');
 
 describe('save file', () => {
     const testDir = path.join(__dirname, 'save-file-dir');
@@ -15,9 +16,14 @@ describe('save file', () => {
     });
 
     it('creates a new file in the destination', () => {
-        return saveFile(dest)
+        return saveFile(dest, 'testing testing')
             .then(() => {
-                assert.deepEqual(dest, 'testing testing');
+                return Promise.all([
+                    readFile(dest, 'utf8')
+                ]);
+            })
+            .then(([content]) => {
+                assert.deepEqual(content, 'testing testing');
             });
     });
 });
