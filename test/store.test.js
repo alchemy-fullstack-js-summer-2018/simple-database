@@ -7,8 +7,8 @@ const Store = require('../lib/store');
 
 
 describe('Store some animal data', () => {
-
     const dest = path.join(__dirname, 'animals');
+    const store = new Store(dest);
     
     beforeEach(() => {
         return rimraf(dest);
@@ -18,19 +18,9 @@ describe('Store some animal data', () => {
         return mkdirp(dest);
     });
     
-    it('Saves a file to animals directory with an id', () => {
-        const store = new Store(dest);
 
-        return store.saveFile({ name: 'Frank' })
-            .then(animal => {
-                assert.ok(JSON.parse(animal)._id);
-            });
-    });
-
-    it('Gets an animal based on the id', () => {
-        const store = new Store(dest);
-
-        store.saveFile({ name: 'Doggo' })
+    it('Saves a file with an id and checks the id', () => {
+        return store.saveFile({ name: 'Doggo' })
             .then(animal => {
                 return store.getFile(JSON.parse(animal)._id);
             })
@@ -40,14 +30,10 @@ describe('Store some animal data', () => {
             .catch(err => console.log(err));
     });
 
-    it('Returns null if no animal id is found', () => {
-        const store = new Store(dest);
-        store.saveFile({ name: 'Sparky' })
+    it('Returns null if no file id is found', () => {
+        return store.getFile('FAKEID')
             .then(animal => {
-                return store.getFile(JSON.parse(animal)._id);
-            })
-            .then(animal => {
-                assert.equal(animal.id, null);
+                assert.equal(animal, null);
             });
     });
 
