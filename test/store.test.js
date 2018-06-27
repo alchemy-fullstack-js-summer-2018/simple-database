@@ -1,7 +1,7 @@
 const assert = require('assert');
 const { rimraf, mkdirp } = require('../lib/fs');
 const path = require('path');
-const Store = require('../lib/Store');
+const Store = require('../lib/store');
 const rootDirectory = path.join(__dirname, 'animals/');
 const store = new Store(rootDirectory);
 
