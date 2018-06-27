@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { rimraf, mkdirp } = require('../lib/fs');
+const { rimraf, mkdirp, unlink } = require('../lib/fs');
 const path = require('path');
 const Store = require('../lib/store');
 const rootDirectory = path.join(__dirname, 'animals/');
@@ -38,6 +38,12 @@ describe('save file', () => {
             })
             .then((obj) => {
                 assert.equal(obj, null);
+            });
+    });
+    it('deletes files with a given id', () => {
+        return store.remove()
+            .then(obj => {
+                unlink(obj);
             });
     });
 });
