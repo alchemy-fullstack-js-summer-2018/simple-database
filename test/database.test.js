@@ -1,0 +1,2 @@
+const variableName = require('
+variableName');
