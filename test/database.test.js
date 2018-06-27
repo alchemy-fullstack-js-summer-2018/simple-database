@@ -6,10 +6,10 @@ const Store = require('../lib/Store');
 describe('Simple database', () => {
     let store = null;
     const dest = path.join(__dirname, 'database');
+    store = new Store(dest);
 
 
     beforeEach(() => {
-        store = new Store(dest);
         return rimraf(dest);
 
     });
@@ -19,11 +19,22 @@ describe('Simple database', () => {
     });
 
     it('saves file to database', () => {
-        return store.save({ candybar: 'twix' });
-            // .then(saved => {
-            //     const result = saved._id;
-            //     assert.equal(result, true);
-            // });
+        return store.save({ name: 'twix' })
+
+            .then(saved => {
+                //assert.ok(saved._id);
+                return store.get(saved._id);
+            })
+
+            .then(candyBar => {
+                assert.equal(candyBar.name, 'twix');
+            });
+    });
+
+    it('gets a bad id and returns null', () => {
+        return store.get('bad id')
+            .then(returned => {
+                assert.equal(returned, null);
+            });
     });
 });
-
