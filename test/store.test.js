@@ -1,10 +1,8 @@
 const assert = require('assert');
-const fs = require('fs');
 const path = require('path');
 const { promisify } = require('util');
 const rimraf = promisify(require('rimraf'));
 const mkdirp = promisify(require('mkdirp'));
-const { save } = require('../lib/store');
 const Store = require('../lib/store');
 
 
@@ -34,12 +32,12 @@ describe('store', () => {
             });
     });
 
-    it.only('test bad id', () => {
+    it('test bad id', () => {
         const store = new Store(dir);
 
         return store.save({ name: 'garfield' })
             .then(animal => {
-                assert.equal();
+                assert.equal(animal.name, 'garfield');
             });
     });
 });
