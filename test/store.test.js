@@ -53,4 +53,12 @@ describe('Store some animal data', () => {
             .catch(err => console.log(err));
     });
 
+    it('Returns null if no animal id is found', () => {
+        const store = new Store(dest);
+        return store.getFile('fakeId')
+            .then(animal => {
+                assert.equal(animal.id, null);
+            });
+    });
+
 });
