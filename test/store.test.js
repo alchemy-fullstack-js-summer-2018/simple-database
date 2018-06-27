@@ -16,11 +16,20 @@ describe('store', () => {
         return mkdirp(rootDir);
     });
 
-    it('saves object to warehouse as json with id as file name', () => {
+    it('saves object to warehouse as json with id as file name and retrieves it', () => {
         return myStore.save({ god: 'Zeus' })
             .then(obj => {
-                assert.ok(obj._id);
+                return myStore.get(obj._id);
+            })
+            .then(obj => {
+                assert.equal(obj.god, 'Zeus');
+            })
+            .catch(err => {
+                if(err.code === 'ENOENT') {
+                    return null;
+                }
             });
     });
+
 
 });
