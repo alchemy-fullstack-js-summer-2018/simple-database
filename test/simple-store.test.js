@@ -1,17 +1,11 @@
 const assert = require('assert');
 const { rimraf, mkdirp } = require('../lib/fs');
 const path = require('path');
-const Store = require('../lib/store');
+const Store = require('../lib/simple-store');
 const rootDirectory = path.join(__dirname, 'animals/');
 const store = new Store(rootDirectory);
 
 describe('save file', () => {
-    // readdir(rootDirectory)
-    //     .then((obj) => {
-    //         console.log(obj);
-    //     });
-    // const dir = path.join(rootDirectory, destFileName);
-
     beforeEach(() => {
         return rimraf(rootDirectory)
             .catch(err => {
