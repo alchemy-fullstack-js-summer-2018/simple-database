@@ -1,0 +1,32 @@
+{
+  "name": "simple-database",
+  "version": "1.0.0",
+  "description": "An apparently bad database",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "npm run test:mocha",
+    "test:mocha": "mocha",
+    "start": "npm run test:mocha -- -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AttilaTheHen/simple-database.git"
+  },
+  "author": "Injoong Yoon <injoongyoon@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AttilaTheHen/simple-database/issues"
+  },
+  "homepage": "https://github.com/AttilaTheHen/simple-database#readme",
+  "devDependencies": {
+    "eslint": "^5.0.1",
+    "mocha": "^5.2.0"
+  },
+  "dependencies": {
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.6.2",
+    "shortid": "^2.2.8"
+  }
+}
