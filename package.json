@@ -1,7 +1,6 @@
 {
   "name": "simple-database",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
@@ -28,5 +27,10 @@
     "eslint": "^5.0.1",
     "mocha": "^5.2.0",
     "util": "^0.11.0"
-  }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "description": ""
 }
