@@ -42,7 +42,7 @@ describe.only('this is my store function', () => {
             });
     });
     it('removes items at the specified id and returns true', () => {
-        item.remove('')
+        item.remove('HysUzaGGQ')
             .then(status => {
                 assert.deepEqual(status, { removed: true });
             });
