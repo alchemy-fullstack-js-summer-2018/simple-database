@@ -1,0 +1,32 @@
+{
+  "name": "simple-database",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "echo running",
+    "test": "mocha",
+    "test:mocha": "mocha",
+    "start": "npm run test:mocha -- -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robinhood182/simple-database.git"
+  },
+  "author": "Robyn Navarro <rnavarro182@gmail.com> (https://github.com/robinhood182)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/robinhood182/simple-database/issues"
+  },
+  "homepage": "https://github.com/robinhood182/simple-database#readme",
+  "devDependencies": {
+    "eslint": "^5.0.1",
+    "mocha": "^5.2.0"
+  },
+  "dependencies": {
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.6.2",
+    "shortid": "^2.2.8"
+  }
+}
