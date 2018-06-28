@@ -44,9 +44,19 @@ describe('save file', () => {
             });
     });
     it('returns an array of all objects in the directory', () => {
-        return store.getAll()
+        const cat = [
+            { name: 'garfield' },
+            { name: 'felix' },
+            { name: 'chesh' }
+        ];
+        return Promise.all(cat.map(animal => {
+            return store.save(animal);
+        }))
+            .then(() => {
+                return store.getAll();
+            })
             .then(arr => {
-                assert.deepEqual(arr.length, 0);
+                assert.deepEqual(arr.name, cat.name);
             });
     });
 });
