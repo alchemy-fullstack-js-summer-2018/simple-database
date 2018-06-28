@@ -8,18 +8,18 @@ describe.only('this is my store function', () => {
     const source = path.join(__dirname, 'save-file-dir/');
     const item = new Store(source);
 
-    // beforeEach(() => {
-    //     return rimraf(source)
-    //         .catch(err => {
-    //             if(err !== 'ENOENT') throw err;
-    //         })
-    //         .then(() => {
-    //             return mkdirp(source);
-    //         });
-    // });
+    beforeEach(() => {
+        return rimraf(source)
+            .catch(err => {
+                if(err !== 'ENOENT') throw err;
+            })
+            .then(() => {
+                return mkdirp(source);
+            });
+    });
 
     it('saves obj and gets obj successfully', () => {
-        item.save({name: 'DOGS'})
+        item.save({ name: 'DOGS' })
             .then(obj => {
                 return item.get(obj._id);
             })
@@ -35,30 +35,24 @@ describe.only('this is my store function', () => {
             });      
     });
 
+    it('returns an array the length of items', () => {
+        return item.getAll()
+            .then(items => {
+                assert.deepEqual(items.length, 0);
+            });
+    });
     it('removes items at the specified id and returns true', () => {
-        item.remove('Bki8q8Wzm')
+        item.remove('')
             .then(status => {
-                assert.deepEqual(status, { removed: true })
+                assert.deepEqual(status, { removed: true });
             });
     });
 
     it('returns false when trying to remove on a bad id', () => {
         item.remove('bad')
             .then(status => {
-                assert.deepEqual(status, { removed: false })
+                assert.deepEqual(status, { removed: false });
             });
     });
 
-    it('returns an array the length of items', () => {
-        return item.getAll()
-            .then(items => {
-                assert.deepEqual(items.length, 2)
-            });
-        });
-    it.only('returns the correct array', () => {
-        return item.getAll()
-            .then(items => {
-                assert.deepEqual(items, [ 'SJfU_DbGX.json'])
-            });
-        });
 });
