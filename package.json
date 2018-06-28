@@ -1,0 +1,32 @@
+{
+  "name": "simple-database",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "test:mocha": "mocha",
+    "test": "npm run test:mocha",
+    "start": "npm run test:mocha -- -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rbtprograms/simple-database.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rbtprograms/simple-database/issues"
+  },
+  "homepage": "https://github.com/rbtprograms/simple-database#readme",
+  "dependencies": {
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.6.2",
+    "shortid": "^2.2.8"
+  },
+  "devDependencies": {
+    "eslint": "^5.0.1",
+    "mocha": "^5.2.0",
+    "util": "^0.11.0"
+  }
+}
