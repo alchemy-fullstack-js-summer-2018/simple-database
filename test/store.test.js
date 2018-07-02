@@ -6,6 +6,7 @@ const { rimraf, mkdirp } = require('../lib/fs');
 
 describe('store', () => {
 
+    //Creates path for the new directory 
     const dir = path.join(__dirname, 'animals');
     const store = new Store(dir);
 
