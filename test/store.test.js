@@ -6,7 +6,7 @@ const { rimraf, mkdirp } = require('../lib/fs');
 
 describe('store', () => {
 
-    //Creates path for the new directory 
+    //Creates path for the new directory with name
     const dir = path.join(__dirname, 'animals');
     const store = new Store(dir);
 
@@ -25,6 +25,13 @@ describe('store', () => {
             .then(saved => {
                 assert.ok(saved._id);
                 // return store.get(saved._id);
+            });
+    });
+
+    it('Looks for a file and returns null if not found', () => {
+        return store.get('file')
+            .then(result => {
+                assert.equal(result, null);
             });
     });
 });
