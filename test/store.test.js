@@ -7,7 +7,7 @@ const { rimraf, mkdirp } = require('../lib/fs');
 describe('store', () => {
 
     const dir = path.join(__dirname, 'animals');
-    let store = new Store(dir);
+    const store = new Store(dir);
 
     beforeEach(() => {
         return rimraf(dir);
@@ -17,12 +17,15 @@ describe('store', () => {
         return mkdirp(dir);
     });
 
-    it('save', () => {
-
-        return store.save({ name: 'garfield' })
-            .then(animal => { 
-                assert.ok(animal._id);
-                assert.deepEqual(animal, 'garfield');
-            });
+    it('save and get animal', () => {
+        store.save({ name: 'dog' })
+            .then(object => {
+                return store.get(object._id);
+            })
+            .then(animal => {
+                assert.equal(animal.name, 'dog');
+            })
     });
 });
+
+
