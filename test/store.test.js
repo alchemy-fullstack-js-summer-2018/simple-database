@@ -10,18 +10,20 @@ describe('store', () => {
     const store = new Store(dir);
 
     beforeEach(() => {
+        //deletes directory
         return rimraf(dir);
     });
 
     beforeEach(() => {
+        //creates new directory
         return mkdirp(dir);
     });
 
     it('saves a file to the Database with an id', () => {
-        return store.save({ file: 'file contents' })
+        return store.save({ Name: 'dog' })
             .then(saved => {
                 assert.ok(saved._id);
-                return store.get(saved._id);
+                // return store.get(saved._id);
             });
     });
 });
