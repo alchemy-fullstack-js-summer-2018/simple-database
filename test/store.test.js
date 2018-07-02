@@ -17,15 +17,14 @@ describe('store', () => {
         return mkdirp(dir);
     });
 
-    it('save and get animal', () => {
-        store.save({ name: 'dog' })
-            .then(object => {
-                return store.get(object._id);
-            })
-            .then(animal => {
-                assert.equal(animal.name, 'dog');
-            })
+    it('saves a file to the Database with an id', () => {
+        return store.save({ file: 'file contents' })
+            .then(saved => {
+                assert.ok(saved._id);
+                return store.get(saved._id);
+            });
     });
 });
+
 
 
