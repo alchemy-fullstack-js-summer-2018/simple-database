@@ -32,13 +32,22 @@ describe('Store Database Project', () => {
                 assert.equal(result, null);
             });
     });
+    
+    it('gets all items in an array from the database', () => {
+        return store.save({ file: 'file contents' })
+            .then(() => {
+                return store.getAll()
+                    .then(items => {
+                        assert.deepEqual(items.length, 1);
+                    });
+            });
+    });
 
     it('deletes a file by id and returns true if deleted and false if does not exist', () => {
         return store.save({ file: 'to be deleted' })
             .then(saved => {
                 return store.remove(saved._id);
             });
-
     });
-   
+
 });
