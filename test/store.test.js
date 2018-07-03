@@ -55,12 +55,19 @@ describe('Store some animal data', () => {
 
     it('Returns false when deleting file with bad id', () => {
         return store.remove('FileWith BadId')
-            .then(animal => {
-                assert.strictEqual(animal.removed, false);
+            .then(removed => {
+                assert.deepEqual(removed, { removed: false });
             });
     });
 
-    it('Returns empty array for a newly ')
+    it('Returns empty array for a newly created animal file', () => {
+        return store.getAll()
+            .then(result => {
+                assert.deepEqual(result, []);
+            });
+           
+        
+    });
 
     
     
