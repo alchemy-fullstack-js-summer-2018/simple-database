@@ -16,13 +16,13 @@ describe('Store some animal data', () => {
         return mkdirp(dest);
     });
 
-    it('Saves a file to animals directory with an id', () => {
+    it('Saves and gets file to animals directory with an id', () => {
         store.save({ name: 'garfield' })
             .then(animal => {
                 return store.get(animal._id);
             })
             .then(animal => {
-                console.log('got animal & id', animal + animal._id);
+                console.log('got animal & id', animal,  animal._id);
                 assert.equal(animal.name, 'garfield');
             })
             .catch(err => {
@@ -35,8 +35,33 @@ describe('Store some animal data', () => {
             .then(animal => {
                 assert.equal(animal, null);
             });
-        
-    })
+    });
 
+    it('Removes an animal by id', () =>  {
+        let saved = null;
+        return store.save({ animal: 'garfield' })
+            .then(animal => {
+                saved = animal._id;
+                return store.remove(animal._id);
+            })
+            .then(removed => {
+                assert.deepEqual(removed, { removed: true });
+                return store.get(saved);
+            })
+            .then(got => {
+                assert.strictEqual(got, null);
+            });
+    });
+
+    it('Returns false when deleting file with bad id', () => {
+        return store.remove('FileWith BadId')
+            .then(animal => {
+                assert.strictEqual(animal.removed, false);
+            });
+    });
+
+    it('Returns empty array for a newly ')
+
+    
     
 });
