@@ -16,7 +16,7 @@ describe('Store some animal data', () => {
         return mkdirp(dest);
     });
 
-    it('Save a file to animals directory with an id', () => {
+    it('Saves a file to animals directory with an id', () => {
         store.save({ name: 'garfield' })
             .then(animal => {
                 return store.get(animal._id);
@@ -30,7 +30,13 @@ describe('Store some animal data', () => {
             });
     });
 
-    
+    it('Returns null for file with bad id', () => {
+        return store.get('FileWithBadId')
+            .then(animal => {
+                assert.equal(animal, null);
+            });
+        
+    })
 
     
 });
