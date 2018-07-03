@@ -22,11 +22,7 @@ describe('Store some animal data', () => {
                 return store.get(animal._id);
             })
             .then(animal => {
-                console.log('got animal & id', animal,  animal._id);
                 assert.equal(animal.name, 'garfield');
-            })
-            .catch(err => {
-                console.log('Got error', err);
             });
     });
 
@@ -67,6 +63,24 @@ describe('Store some animal data', () => {
             });
            
         
+    });
+
+    it('Returns all items for GetAll', () => {
+        let savedArray = null;
+        const animalArray = [
+            { name: 'garfield' },
+            { name: 'Felix' },
+            { name: 'Tom' }
+        ];
+        return Promise.all(animalArray.map(animal => store.save(animal)))
+            .then(saved => {
+                savedArray = saved;
+                savedArray.sort((a, b) => a._id < b._id ? -1 : 1);
+                return store.getAll();
+            }) 
+            .then(all => {
+                assert.deepEqual(all, savedArray);
+            });
     });
 
     
