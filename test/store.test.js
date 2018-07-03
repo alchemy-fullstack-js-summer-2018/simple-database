@@ -1,8 +1,8 @@
 const assert = require('assert');
-const { rimraf, mkdirp } = require('../lib/fs.js');
+const { rimraf, mkdirp } = require('../lib/fs');
 const path = require('path');
 
-const Store = require('../lib/store.js');
+const Store = require('../lib/store');
 
 describe('Store some animal data', () => {
     const dest = path.join(__dirname, 'animals');
@@ -23,9 +23,14 @@ describe('Store some animal data', () => {
             })
             .then(animal => {
                 console.log('got animal & id', animal + animal._id);
+                assert.equal(animal.name, 'garfield');
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.log('Got error', err);
+            });
     });
 
-});
+    
 
+    
+});
