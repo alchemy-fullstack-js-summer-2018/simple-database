@@ -43,7 +43,13 @@ describe('store', () => {
                         assert.deepEqual(items.length, 1);
                     });
             });
+    });
 
+    it('deletes file by id. Returns true if completed else false if no file found', () => {
+        return store.save({file: 'to be deleted'})
+            .then(saved => {
+                return store.remove(saved._id);
+            });
     });
 });
 
