@@ -1,8 +1,17 @@
 {
   "name": "simple-database",
   "version": "1.0.0",
-  "description": "An apparently bad database",
+  "description": "",
   "main": "index.js",
+  "dependencies": {
+    "eslint": "^5.0.1",
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.6.2",
+    "shortid": "^2.2.8"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  },
   "scripts": {
     "lint": "eslint .",
     "pretest": "npm run lint",
@@ -12,31 +21,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AttilaTheHen/simple-database.git"
+    "url": "git+https://github.com/Quintam26/simple-database.git"
   },
-  "author": "Injoong Yoon <injoongyoon@gmail.com>",
+  "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AttilaTheHen/simple-database/issues"
+    "url": "https://github.com/Quintam26/simple-database/issues"
   },
-  "homepage": "https://github.com/AttilaTheHen/simple-database#readme",
-  "devDependencies": {
-    "eslint": "^5.0.1",
-    "mocha": "^5.2.0"
-  },
-  "dependencies": {
-    "mkdirp": "^0.5.1",
-    "rimraf": "^2.6.2",
-    "shortid": "^2.2.8"
-  },
-  "devDependencies": {
-    "eslint": "^5.0.1",
-    "mocha": "^5.2.0",
-    "util": "^0.11.0"
-  },
-  "directories": {
-    "lib": "lib",
-    "test": "test"
-  },
-  "description": ""
+  "homepage": "https://github.com/Quintam26/simple-database#readme"
 }
