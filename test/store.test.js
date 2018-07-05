@@ -34,6 +34,17 @@ describe('store', () => {
                 assert.equal(result, null);
             });
     });
+
+    it('Retrieves alll items from array within database', () => {
+        return store.save({ Name: 'dog' })
+            .then(() => {
+                return store.getAll()
+                    .then(items => {
+                        assert.deepEqual(items.length, 1);
+                    });
+            });
+
+    });
 });
 
 
