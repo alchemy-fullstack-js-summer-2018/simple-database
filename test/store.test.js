@@ -8,7 +8,7 @@ describe('store', () => {
 
     //Creates path for the new directory with name
     const dir = path.join(__dirname, 'animals');
-    const store = new Store(dir);
+    let store = new Store(dir);
 
     beforeEach(() => {
         //deletes directory
@@ -23,7 +23,7 @@ describe('store', () => {
     it('saves a file to the Database with an id', () => {
         return store.save({ Name: 'dog' })
             .then(saved => {
-                assert.ok(saved._id);
+                assert.equal(saved._id);
                 return store.get(saved._id);
             });
     });
@@ -45,7 +45,7 @@ describe('store', () => {
             });
     });
 
-    it('Deletes file by id. Returns true if completed else false if no file found', () => {
+    it('Deletes file by id', () => {
         return store.save({ Name: 'dog' })
             .then(saved => {
                 return store.remove(saved._id);
