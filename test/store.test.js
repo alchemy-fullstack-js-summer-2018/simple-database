@@ -24,7 +24,7 @@ describe('store', () => {
         return store.save({ Name: 'dog' })
             .then(saved => {
                 assert.ok(saved._id);
-                // return store.get(saved._id);
+                return store.get(saved._id);
             });
     });
 
