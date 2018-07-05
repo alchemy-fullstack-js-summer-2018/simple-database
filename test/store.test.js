@@ -45,8 +45,8 @@ describe('store', () => {
             });
     });
 
-    it('deletes file by id. Returns true if completed else false if no file found', () => {
-        return store.save({file: 'to be deleted'})
+    it('Deletes file by id. Returns true if completed else false if no file found', () => {
+        return store.save({ Name: 'dog' })
             .then(saved => {
                 return store.remove(saved._id);
             });
