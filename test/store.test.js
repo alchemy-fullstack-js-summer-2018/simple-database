@@ -35,7 +35,7 @@ describe('store', () => {
             });
     });
 
-    it('Retrieves alll items from array within database', () => {
+    it('Retrieves all items from array within database', () => {
         return store.save({ Name: 'dog' })
             .then(() => {
                 return store.getAll()
