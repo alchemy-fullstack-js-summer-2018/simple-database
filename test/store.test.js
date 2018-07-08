@@ -1,12 +1,12 @@
 const assert = require('assert');
 const path = require ('path');
-const { promisify } = require('util');
-const rimraf = promisify(require('rimraf'));
-const mkdirp = promisify(require('mkdirp'));
+//const rimraf = promisify(require('rimraf'));
+//const mkdirp = promisify(require('mkdirp'));
+const { rimraf, mkdirp } = require('../lib/fs');
 const Store = require('../lib/store');
+const dir = path.join(__dirname, 'pets');
 
 describe('store some pet data', () => {
-    const dir = path.join(__dirname, 'pets');
 
     beforeEach(() => {
         return rimraf(dir);
@@ -34,6 +34,17 @@ describe('store some pet data', () => {
         return store.get('bad')
             .then(result => {
                 assert.equal(result, null);
+            });
+    });
+
+    it('removes files by id', () => {
+        const store = new Store(dir);
+        return store.save({ pet: 'Benjamin Franklin' })
+            .then(obj => { 
+                return store.remove(obj._id);
+            })
+            .then(status => {
+                assert.equal(status.removed, true);
             });
     });
 }); 
