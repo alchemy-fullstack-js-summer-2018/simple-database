@@ -29,10 +29,15 @@ describe('save file', () => {
             });
         
     });
+
+    it('deletes a file with specific id', () => {
+        return store.remove('')
+            .then(item => {
+                assert.deepEqual(item.removed, true);
+            });
+    });
     
     it('checks for bad id or no id', () => {
-
-
         return store.get('bad')
             .then(item => {
                 assert.equal(item, null);
@@ -43,7 +48,7 @@ describe('save file', () => {
         const cat = [
             { name: 'Velma' },
             { name: 'Daphne' },
-            { name: 'Sydney'},
+            { name: 'Sydney' },
             { name: 'Mr. Black' }
         ];
         
