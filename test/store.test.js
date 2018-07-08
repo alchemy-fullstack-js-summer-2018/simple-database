@@ -23,11 +23,9 @@ describe('store some pet data', () => {
             .then(pet => {
                 assert.ok(pet._id);
                 return store.get(pet._id);
-                //(shortid.generate) ??
             })
             .then(pet => {
                 assert.equal(pet.name, 'Benjamin Franklin');
-                console.log('got pet', pet);
             }); 
     });  
 
@@ -39,7 +37,3 @@ describe('store some pet data', () => {
             });
     });
 }); 
-    
-    
-
-
