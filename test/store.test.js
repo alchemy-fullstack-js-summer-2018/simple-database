@@ -1,12 +1,10 @@
 const assert = require('assert');
 const path = require ('path');
-const { promisify } = require('util');
-const rimraf = promisify(require('rimraf'));
-const mkdirp = promisify(require('mkdirp'));
+const { rimraf, mkdirp } = require('../lib/fs');
 const Store = require('../lib/store');
+const dir = path.join(__dirname, 'pets');
 
 describe('store some pet data', () => {
-    const dir = path.join(__dirname, 'pets');
 
     beforeEach(() => {
         return rimraf(dir);
@@ -18,14 +16,13 @@ describe('store some pet data', () => {
     
     it('save a pet with id and return', () => {
         const store = new Store(dir);
-        
-        return store.save({ name: 'Benjamin Franklin' })
-            .then(pet => {
-                assert.ok(pet._id);
-                return store.get(pet._id);
+        return store.save({ pet: 'Benjamin Franklin' })
+            .then(obj => {
+                assert.ok(obj._id);
+                return store.get(obj._id);
             })
-            .then(pet => {
-                assert.equal(pet.name, 'Benjamin Franklin');
+            .then(obj => {
+                assert.equal(obj.pet, 'Benjamin Franklin');
             }); 
     });  
 
@@ -35,5 +32,27 @@ describe('store some pet data', () => {
             .then(result => {
                 assert.equal(result, null);
             });
+    });
+
+    it('removes files by id', () => {
+        const store = new Store(dir);
+        return store.save({ pet: 'Benjamin Franklin' })
+            .then(obj => { 
+                return store.remove(obj._id);
+            })
+            .then(status => {
+                assert.equal(status.removed, true);
+            });
+    });
+    it('gets all files', () => {
+        const store = new Store(dir);
+        const pets = [
+            { pet: 'Milo' },
+            { pet: 'Benjamin Franklin' },
+            { pet: 'Birdtrude Stein' }
+        ];
+        return Promise.all(pets.map(pet => {
+            return store.save(pet);
+        }));
     });
 }); 
