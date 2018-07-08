@@ -28,10 +28,25 @@ describe('save file', () => {
             });
         
     });
+    
     it('checks for bad id or no id', () => {
+        const store = new Store(bad)
+
         return store.get('bad')
             .then(result => {
                 assert.equal(result, null);
             });
     });
+
+    it('get all files from store or return null if empty', () => {
+        getAll(source) {
+            return Promise.all([
+                readdir(source)
+            ])
+                .then(([files]) => {
+                    return Promise.all(files.map);
+                })
+                .then() //what is my assert block?
+        }
+    })
 });
