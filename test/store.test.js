@@ -9,6 +9,7 @@ const mkdirp = promisify(require('mkdirp'));
 describe('save file', () => {
 
     const saveDir = path.join(__dirname, 'animals');
+    const store = new Store(saveDir);
     
 
     beforeEach(() => {
@@ -30,23 +31,30 @@ describe('save file', () => {
     });
     
     it('checks for bad id or no id', () => {
-        const store = new Store(bad)
+
 
         return store.get('bad')
-            .then(result => {
-                assert.equal(result, null);
+            .then(item => {
+                assert.equal(item, null);
             });
     });
 
     it('get all files from store or return null if empty', () => {
-        getAll(source) {
-            return Promise.all([
-                readdir(source)
-            ])
-                .then(([files]) => {
-                    return Promise.all(files.map);
-                })
-                .then() //what is my assert block?
-        }
-    })
+        const cat = [
+            { name: 'Velma' },
+            { name: 'Daphne' },
+            { name: 'Sydney'},
+            { name: 'Mr. Black' }
+        ];
+        
+        return Promise.all(cat.map(animal => {
+            return store.save(animal);
+        }))
+            .then(() => {
+                return store.getAll();
+            })
+            .then(arr => {
+                assert.deepEqual(arr.name, cat.name);
+            }); 
+    });
 });
