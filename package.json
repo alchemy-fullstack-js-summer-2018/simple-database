@@ -10,7 +10,7 @@
     "test:mocha": "mocha",
     "start": "npm run test:mocha -- -w"
   },
-  "author": "",
+  "author": "Sarah Rehmer",
   "license": "ISC",
   "dependencies": {
     "mkdirp": "^0.5.1",

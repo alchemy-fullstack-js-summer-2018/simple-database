@@ -8,7 +8,7 @@ const Store = require('../lib/store');
 describe('store some pet data', () => {
     const dir = path.join(__dirname, 'pets');
 
-    beforeEach(()  => {
+    beforeEach(() => {
         return rimraf(dir);
     });
 
