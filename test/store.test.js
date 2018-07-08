@@ -1,32 +1,33 @@
 
 const Store = require('../lib/store');
-// const rootDirectory = path.join(__dirname, 'fruits');
-// const store = new Store(rootDirectory);
 const { rimraf, mkdirp } = require('../lib/fs');
 const assert = require('assert');
-// const { unlink, readFile } = require('../lib/fs');
 const path = require('path');
 
 
 describe('store', () => {
 
-    const rootDirectory = path.join(__dirName, 'animals');
+    const rootDirectory = path.join(__dirname, 'animals');
     const store = new Store(rootDirectory);
 
     beforeEach(() => {
-        return rimraf(dest);
+        return rimraf(rootDirectory);
     });
     beforeEach(() => {
-        return mkdirp(dest);
+        return mkdirp(rootDirectory);
     });
 
     it('saves a file to database with id', () => {
-        return store.save({ file: 'file data contents' });
+        return store.save({ file: 'file data contents' })
             .then(saved => {
+                assert.ok(saved._id);
                 assert.equal(saved.file, 'file data contents');
-        });
-    })
-    it('get a file from ')
+            });
+    });
+    
+    // it('gets a file from database with id', () => {
+    //     return 
+    // } 
     
     
     
@@ -35,21 +36,21 @@ describe('store', () => {
     
     
     
-    store.save({ name: 'garfield' });
-        .then(animal => {
-            return store.get(animal._id);
-        })
-        .then(animal => {
-            console.log('got animal', animal);
-        })
-        .catch(err => console.log(er));
+    // store.save({ name: 'garfield' });
+    //     .then(animal => {
+    //         return store.get(animal._id);
+    //     })
+    //     .then(animal => {
+    //         console.log('got animal', animal);
+    //     })
+    //     .catch(err => console.log(er));
 
 
     
     
     
     
-        // describe('apple constructor test', () => {
+    // describe('apple constructor test', () => {
     //     it('creates an apple', () => {
     //         // const newFruit = 
     //         const apple = new Fruit('apple', 'red');
