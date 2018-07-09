@@ -1,8 +1,9 @@
 
 const Store = require('../lib/store');
+const path = require('path');
 const { rimraf, mkdirp } = require('../lib/fs');
 const assert = require('assert');
-const path = require('path');
+
 
 
 describe('store', () => {
@@ -11,17 +12,19 @@ describe('store', () => {
     const store = new Store(rootDirectory);
 
     beforeEach(() => {
-        return rimraf(rootDirectory);
+        return rimraf(dest);
     });
     beforeEach(() => {
-        return mkdirp(rootDirectory);
+        return mkdirp(dest);
     });
 
     it('saves a file to database with id', () => {
-        return store.save({ file: 'file data contents' })
+        return store.save({ name: 'cat' })
+
             .then(saved => {
+                return store.get(saved._id);
                 assert.ok(saved._id);
-                assert.equal(saved.file, 'file data contents');
+                assert.equal(saved.file, 'saved._id');
             });
     });
     
