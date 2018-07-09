@@ -1,7 +1,7 @@
 # Simple Database
 
 ## Project Description
-
+A simple object database that stores and retrieves objects from the file system.
 
 ## Contributor
 Mariah Adams

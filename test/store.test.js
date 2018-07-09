@@ -19,7 +19,7 @@ describe('store', () => {
         return mkdirp(dir);
     });
 
-    it('save an object with an id', () => {
+    it('saves an object with an id', () => {
         const store = new Store(dir);
 
         return store.save({ name: 'garfield' })
