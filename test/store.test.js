@@ -1,15 +1,15 @@
 
+const assert = require('assert');
+const { rimraf, mkdirp } = require('../lib/fs');
 const Store = require('../lib/store');
 const path = require('path');
-const { rimraf, mkdirp } = require('../lib/fs');
-const assert = require('assert');
 
 
 
-describe('store', () => {
-
-    const rootDirectory = path.join(__dirname, 'animals');
-    const store = new Store(rootDirectory);
+describe('store to database', () => {
+    let store = null;
+    const dest = path.join(__dirname, 'animals');
+    store = new Store(dest);
 
     beforeEach(() => {
         return rimraf(dest);
@@ -23,9 +23,12 @@ describe('store', () => {
 
             .then(saved => {
                 return store.get(saved._id);
-                assert.ok(saved._id);
-                assert.equal(saved.file, 'saved._id');
+                // assert.ok(saved._id);
+            })
+            .then(animal => {
+                assert.equal(animal.name, 'cat');
             });
+            
     });
     
     // it('gets a file from database with id', () => {

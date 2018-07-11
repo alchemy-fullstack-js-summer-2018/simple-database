@@ -3,12 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  
   "directories": {
     "lib": "lib",
     "test": "test"
   },
-  
   "scripts": {
     "lint": "eslint .",
     "pretest": "echo Running",
@@ -31,6 +29,8 @@
     "mocha": "^5.2.0"
   },
   "dependencies": {
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.6.2",
     "shortid": "^2.2.8"
   }
 }
