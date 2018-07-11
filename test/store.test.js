@@ -2,7 +2,7 @@
 const assert = require('assert');
 const path = require('path');
 const { rimraf, mkdirp } = require('../lib/fs');
-const Store = require('../lib/Store');
+const Store = require('../lib/store');
 
 
 describe('store to database', () => {
