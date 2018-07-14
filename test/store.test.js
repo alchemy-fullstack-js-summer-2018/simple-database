@@ -35,7 +35,7 @@ describe('store to database', () => {
             });
     });
 
-    it('get method that gets returns an array the length of items', () => {
+    it.skip('get method that gets returns an array the length of items', () => {
         return store.getAll() 
             .then(returned => {
                 assert.equal(returned.length, 0);
