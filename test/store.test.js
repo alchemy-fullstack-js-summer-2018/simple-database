@@ -27,4 +27,18 @@ describe('store to database', () => {
                 assert.equal(animal.name, 'cat');
             });     
     });
+
+    it('removes a file from the database', () => {
+        return store.save({ name: 'cat' })
+            .then(saved => {
+                return store.remove(saved._id);
+            })
+            .then(response => {
+                assert.equal(response.removed, true);
+                return store.get(response.id);
+            })
+            .then(returned => {
+                assert.equal(returned, null);
+            });
+    });
 });
