@@ -28,6 +28,20 @@ describe('store to database', () => {
             });     
     });
 
+    it('get method that returns null', () => {
+        return store.get('badId')
+            .then(returned => {
+                assert.equal(returned, null);
+            });
+    });
+
+    it('get method that gets returns an array the length of items', () => {
+        return store.getAll() 
+            .then(returned => {
+                assert.equal(returned.length, 0);
+            });
+    });
+
     it('removes a file from the database', () => {
         return store.save({ name: 'cat' })
             .then(saved => {
