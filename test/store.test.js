@@ -44,9 +44,6 @@ describe('store to database', () => {
                     });
             });
     });
-    // it('gets all the animals', () => {
-    //     store = new Store(dest);
-    // });
 
     it('removes a file from the database', () => {
         return store.save({ name: 'cat' })
