@@ -1,4 +1,3 @@
-
 const assert = require('assert');
 const path = require('path');
 const { rimraf, mkdirp } = require('../lib/fs');
@@ -26,5 +25,36 @@ describe('store to database', () => {
             .then(animal => {
                 assert.equal(animal.name, 'cat');
             });     
+    });
+
+    it('get method that returns null', () => {
+        return store.get('badId')
+            .then(returned => {
+                assert.equal(returned, null);
+            });
+    });
+
+    it('get method that gets returns all items from array within database', () => {
+        return store.save({ name: 'cat' }) 
+            .then(() => {
+                return store.getAll()
+                    .then(items => {
+                        assert.deepEqual(items.length, 1);
+                    });
+            });
+    });
+
+    it('removes a file from the database', () => {
+        return store.save({ name: 'cat' })
+            .then(saved => {
+                return store.remove(saved._id);
+            })
+            .then(response => {
+                assert.equal(response.removed, true);
+                return store.get(response.id);
+            })
+            .then(returned => {
+                assert.equal(returned, null);
+            });
     });
 });
