@@ -1,58 +1,60 @@
 const assert = require('assert');
+const path = require('path');
 const { rimraf, mkdirp } = require('../lib/fs');
 const Store = require('../lib/store');
-const path = require('path');
 
-describe.only('this is my store function', () => {
 
-    const source = path.join(__dirname, 'save-file-dir/');
-    const item = new Store(source);
+describe('store to database', () => {
+    let store = null;
+    const dest = path.join(__dirname, 'animals');
+    store = new Store(dest);
 
     beforeEach(() => {
-        return rimraf(source)
-            .catch(err => {
-                if(err !== 'ENOENT') throw err;
-            })
-            .then(() => {
-                return mkdirp(source);
-            });
+        return rimraf(dest);
+    });
+    beforeEach(() => {
+        return mkdirp(dest);
     });
 
-    it('saves obj and gets obj successfully', () => {
-        item.save({ name: 'DOGS' })
-            .then(obj => {
-                return item.get(obj._id);
+    it('saves a file to database with id', () => {
+        return store.save({ name: 'cat' })
+
+            .then(saved => {
+                return store.get(saved._id);
             })
             .then(animal => {
-                assert.equal(animal.name, 'DOGS');
+                assert.equal(animal.name, 'cat');
+            });     
+    });
+
+    it('get method that returns null', () => {
+        return store.get('badId')
+            .then(returned => {
+                assert.equal(returned, null);
             });
     });
 
-    it('returns null when given a bad id', () => {
-        return item.get('HHH')
-            .then(obj => {
-                assert.equal(obj, null);
-            });      
-    });
-
-    it('returns an array the length of items', () => {
-        return item.getAll()
-            .then(items => {
-                assert.deepEqual(items.length, 0);
-            });
-    });
-    it('removes items at the specified id and returns true', () => {
-        item.remove('HysUzaGGQ')
-            .then(status => {
-                assert.deepEqual(status, { removed: true });
+    it('get method that gets returns all items from array within database', () => {
+        return store.save({ name: 'cat' }) 
+            .then(() => {
+                return store.getAll()
+                    .then(items => {
+                        assert.deepEqual(items.length, 1);
+                    });
             });
     });
 
-    it('returns false when trying to remove on a bad id', () => {
-        item.remove('bad')
-            .then(status => {
-                assert.deepEqual(status, { removed: false });
+    it('removes a file from the database', () => {
+        return store.save({ name: 'cat' })
+            .then(saved => {
+                return store.remove(saved._id);
+            })
+            .then(response => {
+                assert.equal(response.removed, true);
+                return store.get(response.id);
+            })
+            .then(returned => {
+                assert.equal(returned, null);
             });
     });
-
 });
