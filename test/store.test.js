@@ -1,4 +1,3 @@
-
 const assert = require('assert');
 const path = require('path');
 const { rimraf, mkdirp } = require('../lib/fs');
