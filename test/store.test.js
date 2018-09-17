@@ -35,12 +35,18 @@ describe('store to database', () => {
             });
     });
 
-    it.skip('get method that gets returns an array the length of items', () => {
-        return store.getAll() 
-            .then(returned => {
-                assert.equal(returned.length, 0);
+    it('get method that gets returns all items from array within database', () => {
+        return store.save({ name: 'cat' }) 
+            .then(() => {
+                return store.getAll()
+                    .then(items => {
+                        assert.deepEqual(items.length, 1);
+                    });
             });
     });
+    // it('gets all the animals', () => {
+    //     store = new Store(dest);
+    // });
 
     it('removes a file from the database', () => {
         return store.save({ name: 'cat' })
